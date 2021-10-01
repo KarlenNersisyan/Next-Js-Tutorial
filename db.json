@@ -21,5 +21,7 @@
       "body": " egregreg dbjghdg huighdiueiogehgehg ghgeiogheg higehrgiehge ehhgeghe hghegiehge hgehgeoigheioh hgoiehgo"
     }
   ],
-  "about": " I am Junior frontend engineer"
+  "about": {
+    "title": " I am Junior frontend engineer"
+  }
 }
