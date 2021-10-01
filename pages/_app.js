@@ -1,7 +1,6 @@
 // import "../styles/main.scss";
 import React from "react";
 import NextNprogress from "nextjs-progressbar";
-import PropTypes from "prop-types";
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -15,8 +14,6 @@ export default function MyApp({ Component, pageProps }) {
 
       <Component {...pageProps} />
 
-      <NextNProgress options={{ easing: "ease", speed: 500 }} />
-
       <style jsx global>{`
         body {
           font-family: "Roboto", sans-serif;
@@ -26,9 +23,3 @@ export default function MyApp({ Component, pageProps }) {
   );
 }
 
-NextNProgress.propTypes = {
-  color: PropTypes.string,
-  startPosition: PropTypes.number,
-  stopDelayMs: PropTypes.number,
-  options: PropTypes.object,
-};
