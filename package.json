@@ -10,6 +10,7 @@
     "serve": "concurrently \"npm run dev\" \"npm run mock\""
   },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "next": "11.1.2",
     "nextjs-progressbar": "^0.0.11",
     "nprogress": "^0.2.0",
