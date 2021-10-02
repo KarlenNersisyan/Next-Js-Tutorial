@@ -5,22 +5,23 @@ import { useEffect, useState } from "react";
 export default function Posts({ posts: serverPosts }) {
   const [posts, setPosts] = useState(serverPosts);
 
-  useEffect(async () => {
+  useEffect(() => {
+    async function load() {
+      const response = await fetch("http://localhost:4200/posts/");
+      const data = await response.json();
+
+      setPosts(data);
+    }
+
     if (!serverPosts) {
-      try {
-        const response = await fetch("https://localhost:4200/posts");
-        const json = await response.json();
-        setPosts(json);
-      } catch (e) {
-        console.error(e);
-      }
+      load();
     }
   }, []);
 
   if (!posts) {
     return (
       <MainLayout>
-        <p>Loading ...</p>;
+        <p>Loading ...</p>
       </MainLayout>
     );
   }
