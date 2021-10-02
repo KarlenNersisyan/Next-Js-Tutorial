@@ -3,6 +3,8 @@ import MainLayout from "../../components/MainLayout";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { NextPageContext } from "next";
+import { MyPost } from "../../interfaces/post";
 
 export default function Post({ post: serverPost }) {
   const router = useRouter();
@@ -13,7 +15,7 @@ export default function Post({ post: serverPost }) {
   useEffect(() => {
     async function load() {
       const response = await fetch(
-        `http://localhost:4200/posts/${router.query.id}`
+        `${process.env.API_URL}/posts/${router.query.id}`
       );
       const data = await response.json();
 
@@ -45,7 +47,11 @@ export default function Post({ post: serverPost }) {
   );
 }
 
-Post.getInitialProps = async ({ query, req }) => {
+interface PostNextPageContext extends NextPageContext {
+  query: { id: string };
+}
+
+Post.getInitialProps = async ({ query, req }: PostNextPageContext) => {
   // console.log("query::", ctx.query); // id
 
   if (!req) {
@@ -53,7 +59,7 @@ Post.getInitialProps = async ({ query, req }) => {
   }
 
   const response = await fetch(`http://localhost:4200/posts/${query.id}`);
-  const post = await response.json();
+  const post: MyPost[] = await response.json();
 
   return { post };
 };
